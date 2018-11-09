@@ -1,4 +1,5 @@
-# charts图表插件  
+charts图表插件  
+---
 
 ### 安装
 ```
@@ -12,3 +13,5 @@ npm run dev
 ```
 npm run build
 ```
+提示
+使用webpack4.0之上版本
