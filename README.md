@@ -18,3 +18,4 @@ npm run build
 ---
  使用webpack4.0之上版本  
 dist/html中有使用方法，具体说明后续优化（参数优化、文档补充）
+https://winesu.github.io/charts/dist/index.html?s==22
