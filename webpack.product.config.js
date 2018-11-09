@@ -5,8 +5,7 @@ module.exports={
 	entry: {
 		main: './src/charts.js'
 	},
-	mode:'development',
-	// mode:'production',
+	mode:'production',
 	//文件出口
 	output:{
 		filename:'charts.js',
@@ -42,8 +41,7 @@ module.exports={
             cache:false,
         })
     ],
-	devtool: 'inline-source-map',
-	// devtool: 'false', 
+	devtool: 'false', 
 	devServer:{
 		contentBase: './index.html',
 		port:8080,
