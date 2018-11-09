@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+html, body{ width:100%;}
+body{font-family:Microsoft YaHei,SimSun,arial,sans-serif; overflow-x:hidden; overflow-y:scroll;}
+a{text-decoration:none;color:#06c;cursor:pointer;}
+a:hover{text-decoration: none;}
+input,button,select,textarea,label{outline:none;vertical-align:middle;}
+textarea{padding:5px;line-height:16px;resize:none;}
+img,ul,li,p,dl,dt,dd,li,ol,s,textarea{margin:0; border:0 none; padding:0; list-style-type:none;line-height: 1;}
+body,form,input,select,label,button,xmp,h1,h2,h3,h4,h5,h6,label{margin:0;padding:0; }
+em,i{ font-style:normal; list-style-type:none}
+img{ vertical-align:middle;display: block;}
+a{text-decoration:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+br{height:0;overflow:hidden;}input{border:none;}.clear{clear:both;}
+.clearx:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}.clearx {zoom:1;}.left{ float:left}.right{ float:right}
+canvas{width: 100%;height: 100%;}
+
+/***canvas圆环部分***/
+.canvasCont{position: relative;width: 100%;}
+.canvasCont .textCont{position: absolute;left: 0;top: 0;width: 100%;height: 100%;text-align: center;}
+.canvasCont .textCont .p1{font-size: 0.34rem;color: #222222;padding-top: 1.52rem;}
+.canvasCont .textCont .p2{font-size: 1rem;color: #cdcdcd;padding: 0.2rem 0;}
+.canvasCont .textCont .p3{font-size: 0.28rem;color: #67554f;margin: 0 auto;background: #f3f3f2;width: 2.32rem;line-height: 0.44rem;-webkit-border-radius: .44rem;-moz-border-radius: .44rem;border-radius: .44rem;}
+.boxList{text-align:center;width: 6.9rem;height: 4.45rem;margin: 0 auto 0.4rem;border:1px solid transparent;background: #fff;box-shadow: 0 0 14px rgba(151,187,233,0.85);-webkit-box-shadow: 0 0 14px rgba(151,187,233,0.85);-moz-box-shadow: 0 0 14px rgba(151,187,233,0.85);border-radius:0.1rem;}
+
+
+
+
+
+
+
+
