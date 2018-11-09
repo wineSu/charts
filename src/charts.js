@@ -77,23 +77,34 @@ import drawRegion from './drawRegion';
 						};
 					this.circleValue = utils.extend(circleValue,defaultParam);
 					Animation.call(this,{
-						current: this.circleValue.current,
-						callback: (current)=>{
+						percent: this.circleValue.current,
+						render: (current)=>{
 							Cirque.call(this,current/100);
 						}
 					});
 				break;
 
 				case 'line':
-					drawAxis.call(this);
-					drawLine.call(this);
-					drawPoint.call(this);
+					Animation.call(this,{
+						percent: 100,
+						render: (current)=>{
+							drawLine.call(this,current/100);
+							drawAxis.call(this);
+							drawPoint.call(this,current/100);
+						}
+					});
 				break;
 
 				case 'bar':
-					drawAxis.call(this);
-					drawLine.call(this);
-					// drawPoint.call(this,10);
+					Animation.call(this,{
+						percent: 100,
+						render: (current)=>{
+							drawLine.call(this,current/100);
+							drawPoint.call(this,current/100,10);
+							drawAxis.call(this);
+						}
+					});
+					
 				break;
 
 				case 'pie':

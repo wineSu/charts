@@ -6,13 +6,15 @@
 export function drawAxis () {
 	let defaultParam = this.defaultParam,
 		ctx = this.ctx,
-		pad = defaultParam.padding,
-		bottompad = 10,
+		pad = defaultParam.padding+0.5,
+		bottompad = 10.5,
 		wd = defaultParam.wd,
 		ht = defaultParam.ht;
 	ctx.beginPath();
-	//手机端1px线条问题修复
-	ctx.translate(0.5, 0.5);
+	ctx.lineWidth = 1;
+	ctx.setLineDash([1,1]);
+	//手机端1px线条问题修复(动画方式下直接在参数上增加0.5  不采用translate方式)
+	// ctx.translate(0.5, 0.5);
 	//10为默认边界宽度
     ctx.moveTo(pad,pad);
     ctx.lineTo(pad,ht - bottompad);
@@ -28,18 +30,19 @@ export function drawAxis () {
  * @DateTime 2018-11-07
  * @desc     坐标轴上的点
  */
-export function drawPoint(x = 0) {
+export function drawPoint(speed,x = 0) {
 	let defaultParam = this.defaultParam,
 		ctx = this.ctx,
 		nums = defaultParam.data,
 		len  = nums.length,
+		type = defaultParam.type,
 		ht   = defaultParam.ht;
 	//初始定义线条
 	ctx.lineWidth = 3;
 	for (let i = 0;i < len;i ++){
-        let yVal = nums[i].yVal,
+        let yVal = parseInt((nums[i].yVal)*speed),
         	xVal = nums[i].xVal,
-        	numsY = ht - ht*yVal/defaultParam.maxPoint - 10,
+        	numsY = (ht - ht*yVal/defaultParam.maxPoint - 10)*speed,
         	numsX = i * (defaultParam.wid/nums.length-1) + defaultParam.x;
         //绘制折线点
         if(defaultParam.type == 'line'){
@@ -55,6 +58,8 @@ export function drawPoint(x = 0) {
 			ctx.closePath();
 			ctx.stroke();
 			ctx.fill();
+		}else{
+			numsY = (ht - ht*yVal/defaultParam.maxPoint - 10);
 		}
         //折线上的点值  
 		ctx.shadowBlur = 0;
@@ -81,7 +86,7 @@ export function drawPoint(x = 0) {
  * @DateTime 2018-11-07
  * @desc     数据连接线或柱状图
  */
-export function drawLine(){
+export function drawLine(speed){
 	let defaultParam = this.defaultParam,
 		ctx = this.ctx,
 		bottompad = 10,
@@ -94,14 +99,15 @@ export function drawLine(){
 		rectHei = this.canvas.height - bottompad*2 - defaultParam.padding;
 	for (let i = 0;i < typeLne;i ++){
         //起始坐标
-        let yVal = nums[i].yVal,
-        	axiosY = ht - ht*(yVal)/maxPoint - bottompad,
+        let yVal = nums[i].yVal*speed,
+        	axiosY = (ht - ht*(yVal)/maxPoint - bottompad),
         	averNum= (defaultParam.wid/nums.length-1),
-        	axiosX = i * averNum + defaultParam.x;
+        	axiosX = (i * averNum + defaultParam.x);
     	if(type == 'line'){
+    		axiosX = (i * averNum*speed + defaultParam.x);
     		//终止坐标  
-	    	let axiosNY = ht - ht*(nums[i+1].yVal)/maxPoint - bottompad,
-	    	    axiosNX = (i+1) * averNum + defaultParam.x;
+	    	let axiosNY = ht - ht*(nums[i+1].yVal)/maxPoint*speed - bottompad,
+	    	    axiosNX = ((i+1) * averNum*speed + defaultParam.x);
 	    	//划线
 	        ctx.beginPath();
 	        ctx.setLineDash([1,1]);
