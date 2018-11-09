@@ -16,4 +16,5 @@ npm run build
 
 提示 
 ---
- 使用webpack4.0之上版本
+ 使用webpack4.0之上版本  
+dist/html中有使用方法，具体说明后续优化（参数优化、文档补充）
