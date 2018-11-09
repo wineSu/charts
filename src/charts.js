@@ -7,7 +7,7 @@ import Animation from './drawAnimation';
 //圆环进度
 import Cirque from './cirque';
 //坐标轴
-import {drawAxis, drawPoint, drawLine}  from './drawAxis';
+import {drawAxis, drawPoint, drawLine, drawBar}  from './drawAxis';
 //扇形图
 import drawPie from './drawPie';
 //雷达图
@@ -99,7 +99,7 @@ import drawRegion from './drawRegion';
 					Animation.call(this,{
 						percent: 100,
 						render: (current)=>{
-							drawLine.call(this,current/100);
+							drawBar.call(this,current/100);
 							drawPoint.call(this,current/100,10);
 							drawAxis.call(this);
 						}
@@ -118,7 +118,12 @@ import drawRegion from './drawRegion';
 							innerRadius:0
 						};
 					this.pieValues = utils.extend(pieValues,defaultParam);
-					drawPie.call(_this);
+					Animation.call(this,{
+						percent: 100,
+						render: (current)=>{
+							drawPie.call(this,current/100);
+						}
+					});
 				break;
 
 				case 'region':
@@ -130,7 +135,12 @@ import drawRegion from './drawRegion';
 						angle: Math.PI * 2 / 6         //内角和
 					};
 					this.regionVal = utils.extend(regionVal,defaultParam);
-					drawRegion.call(this);
+					Animation.call(this,{
+						percent: 100,
+						render: (current)=>{
+							drawRegion.call(this,current/100);
+						}
+					});
 					this.canvas.style = 'background:#161627;'
 				break;
 

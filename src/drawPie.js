@@ -5,7 +5,7 @@ import utils from './utils';
  * @DateTime 2018-11-08
  * @desc     绘制扇形 或 圆环
  */
-export default function drawPie(){
+export default function drawPie(speed){
 	const defaultParam = this.defaultParam,
 		  ctx = this.ctx,
 		  _canvas = this.canvas,
@@ -23,7 +23,7 @@ export default function drawPie(){
 		ctx.beginPath();
 		ctx.fillStyle = defaultParam.pieColor[i];
 		ctx.moveTo(x, y);
-        endAngle = startAngle + datas[i].value/total* 2 * Math.PI;
+        endAngle = startAngle + datas[i].value/total* 2 * Math.PI*speed;
 		ctx.arc(x, y, circleValue.radius, startAngle, endAngle, circleValue.anticlockwise);
 		ctx.closePath();
 		ctx.fill();

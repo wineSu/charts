@@ -13,7 +13,7 @@ let Cirque = function(percent){
 	//打底 圆环 绘制
 	ctx.lineWidth = circleValue.arcWidth;
 	ctx.beginPath(); 
-	var grd = ctx.createRadialGradient(circleValue.x, circleValue.y, circleValue.radius - 10, circleValue.x, circleValue.y, circleValue.radius + 9);
+	let grd = ctx.createRadialGradient(circleValue.x, circleValue.y, circleValue.radius - 10, circleValue.x, circleValue.y, circleValue.radius + 9);
 	grd.addColorStop(0,"#e9eae9");
 	grd.addColorStop("0.8","#fefefe");
 	grd.addColorStop("1","#e9eae9");
@@ -25,7 +25,7 @@ let Cirque = function(percent){
 	//展示进度圆环绘制
 	ctx.lineWidth = circleValue.arcWidth;
 	ctx.beginPath();
-	var linear = ctx.createLinearGradient(220,220,380,200);
+	let linear = ctx.createLinearGradient(220,220,380,200);
 	linear.addColorStop(0,'#ffc26b');
 	linear.addColorStop(0.5,'#ff9a5f');
 	linear.addColorStop(1,'#ff8157');
@@ -45,7 +45,7 @@ let Cirque = function(percent){
 	ctx.beginPath();
 	ctx.fillStyle = '#fff';
 	ctx.strokeStyle = '#ff7854';
-	var getX = circleValue.x + circleValue.radius * Math.cos(2 * percent * Math.PI),
+	let getX = circleValue.x + circleValue.radius * Math.cos(2 * percent * Math.PI),
 		getY = circleValue.y + circleValue.radius * Math.sin(2 * percent * Math.PI);
 	ctx.arc(getX , getY, circleValue.arcWidth - 8, circleValue.startAngle, circleValue.endAngle, circleValue.anticlockwise);
 	ctx.closePath();

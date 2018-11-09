@@ -28,7 +28,7 @@ export function drawAxis () {
 /**
  * @Author   SuZhe
  * @DateTime 2018-11-07
- * @desc     坐标轴上的点
+ * @desc     坐标轴上的点以及顶点数据值
  */
 export function drawPoint(speed,x = 0) {
 	let defaultParam = this.defaultParam,
@@ -59,6 +59,7 @@ export function drawPoint(speed,x = 0) {
 			ctx.stroke();
 			ctx.fill();
 		}else{
+			//柱状图
 			numsY = (ht - ht*yVal/defaultParam.maxPoint - 10);
 		}
         //折线上的点值  
@@ -84,7 +85,7 @@ export function drawPoint(speed,x = 0) {
 /**
  * @Author   SuZhe
  * @DateTime 2018-11-07
- * @desc     数据连接线或柱状图
+ * @desc     数据连接线
  */
 export function drawLine(speed){
 	let defaultParam = this.defaultParam,
@@ -92,50 +93,73 @@ export function drawLine(speed){
 		bottompad = 10,
 		nums = defaultParam.data,
 		ht   = defaultParam.ht,
+		width = this.canvas.width,
 		maxPoint  = defaultParam.maxPoint,
 		len = nums.length-1,
-		type = defaultParam.type,
-		typeLne = type == 'line' ? len : len+1,
 		rectHei = this.canvas.height - bottompad*2 - defaultParam.padding;
-	for (let i = 0;i < typeLne;i ++){
+	for (let i = 0;i < len;i ++){
+        //起始坐标
+        let yVal = nums[i].yVal*speed,
+        	axiosY = (ht - ht*(yVal)/maxPoint - bottompad),
+        	averNum= (defaultParam.wid/nums.length-1),
+        	axiosX = (i * averNum * speed + defaultParam.x),
+			//终止坐标  
+    		axiosNY = ht - ht*(nums[i+1].yVal)/maxPoint*speed - bottompad,
+    	    axiosNX = ((i+1) * averNum*speed + defaultParam.x);
+    	    
+    	//划线
+        ctx.beginPath();
+        ctx.setLineDash([1,1]);
+        ctx.moveTo(axiosX,axiosY);
+        ctx.lineTo(axiosNX,axiosNY);
+        ctx.lineWidth = defaultParam.lineWidth;
+        ctx.strokeStyle = defaultParam.styleSet.lineColor;
+        ctx.closePath();
+        ctx.stroke();
+        //x轴上纵线
+        ctx.beginPath();
+        ctx.setLineDash([6,6]);
+        if(i == 0){
+        	ctx.moveTo(axiosX,ht - bottompad);
+        	ctx.lineTo(axiosX,axiosY);
+        }
+        ctx.moveTo(axiosNX,ht - bottompad);
+        ctx.lineTo(axiosNX,axiosNY);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#d6d6d6";
+        ctx.stroke();
+        ctx.closePath();
+    }
+}
+
+/**
+ * @Author   SuZhe
+ * @DateTime 2018-11-07
+ * @desc     柱状图
+ */
+export function drawBar(speed){
+	let defaultParam = this.defaultParam,
+		ctx = this.ctx,
+		bottompad = 10,
+		nums = defaultParam.data,
+		ht   = defaultParam.ht,
+		maxPoint  = defaultParam.maxPoint,
+		len = nums.length,
+		rectHei = this.canvas.height - bottompad*2 - defaultParam.padding;
+	for (let i = 0;i < len;i ++){
         //起始坐标
         let yVal = nums[i].yVal*speed,
         	axiosY = (ht - ht*(yVal)/maxPoint - bottompad),
         	averNum= (defaultParam.wid/nums.length-1),
         	axiosX = (i * averNum + defaultParam.x);
-    	if(type == 'line'){
-    		axiosX = (i * averNum*speed + defaultParam.x);
-    		//终止坐标  
-	    	let axiosNY = ht - ht*(nums[i+1].yVal)/maxPoint*speed - bottompad,
-	    	    axiosNX = ((i+1) * averNum*speed + defaultParam.x);
-	    	//划线
-	        ctx.beginPath();
-	        ctx.setLineDash([1,1]);
-	        ctx.moveTo(axiosX,axiosY);
-	        ctx.lineTo(axiosNX,axiosNY);
-	        ctx.lineWidth = defaultParam.lineWidth;
-	        ctx.strokeStyle = defaultParam.styleSet.lineColor;
-	        ctx.closePath();
-	        ctx.stroke();
-	        //x轴上纵线
-	        ctx.beginPath();
-	        ctx.setLineDash([6,6]);
-	        if(i == 0){
-	        	ctx.moveTo(axiosX,ht - bottompad);
-	        	ctx.lineTo(axiosX,axiosY);
-	        }
-	        ctx.moveTo(axiosNX,ht - bottompad);
-	        ctx.lineTo(axiosNX,axiosNY);
-	        ctx.lineWidth = 1;
-	        ctx.strokeStyle = "#d6d6d6";
-	        ctx.stroke();
-	        ctx.closePath();
-        }else if(type == 'bar'){
+    	
         	ctx.beginPath();
-        	ctx.fillStyle = defaultParam.barColor;
+        	let grd = ctx.createLinearGradient(axiosX-10, 0,axiosX-10+40, rectHei);
+        	grd.addColorStop(1,defaultParam.barColor);
+			grd.addColorStop(0,defaultParam.styleSet.lineColor);
+			ctx.fillStyle = grd;
         	ctx.fillRect(axiosX-10,axiosY,40,rectHei - axiosY);
 	        ctx.fill();
 	        ctx.closePath();
-        }
     }
 }

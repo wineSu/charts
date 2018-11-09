@@ -1,4 +1,4 @@
-export default function drawRegion(){
+export default function drawRegion(speed){
 	const ctx = this.ctx,
 		  regionVal = this.regionVal;
     ctx.strokeStyle = '#925d3b';
@@ -13,10 +13,10 @@ export default function drawRegion(){
         //绘制正边多边形
         for(let j = 0; j < regionVal.lineCount; j ++){
         	let param = {};
-            param.x = regionVal.x + currR * Math.cos(regionVal.angle * j);
-            param.y = regionVal.y + currR * Math.sin(regionVal.angle * j);
+            param.x = regionVal.x + currR * Math.cos(regionVal.angle * j)*speed;
+            param.y = regionVal.y + currR * Math.sin(regionVal.angle * j)*speed;
             ctx.lineTo(param.x, param.y);
-            if(i == 5){
+            if(i == regionVal.lineCount-1){
             	let textRender = regionVal.data[j].name;
             	data.push(param);
             	ctx.fillStyle = '#fff';
@@ -45,23 +45,25 @@ export default function drawRegion(){
     }
     ctx.closePath();
     ctx.stroke();
-
-    //绘制覆盖区域
-    ctx.beginPath();
-    for(let j = 0; j < regionVal.lineCount; j ++){
-    	let dataRender = regionVal.data[j].value/100;
-        let start = regionVal.x + regionVal.radius * Math.cos(regionVal.angle * j)*dataRender;
-    	let end = regionVal.y + regionVal.radius * Math.sin(regionVal.angle * j)*dataRender;
-    	ctx.fillStyle = 'rgba(237,113,54,.6)';
-        ctx.lineTo(start, end);
-    }
-    ctx.fill();
-    ctx.closePath();
+    setTimeout(()=>{
+        //绘制覆盖区域
+        ctx.beginPath();
+        for(let j = 0; j < regionVal.lineCount; j ++){
+            let dataRender = regionVal.data[j].value/100*Math.pow(speed,9);
+            let start = regionVal.x + regionVal.radius * Math.cos(regionVal.angle * j)*dataRender;
+            let end = regionVal.y + regionVal.radius * Math.sin(regionVal.angle * j)*dataRender;
+            ctx.fillStyle = 'rgba(237,113,54,.6)';
+            ctx.lineTo(start, end);
+        }
+        ctx.fill();
+        ctx.closePath();
+    },100)
+    
 
     //绘制覆盖区域点值
     for(let j = 0; j < regionVal.lineCount; j ++){
     	ctx.beginPath();
-    	let dataRender = regionVal.data[j].value/100;
+    	let dataRender = regionVal.data[j].value/100*Math.pow(speed,4);
         let start = regionVal.x + regionVal.radius * Math.cos(regionVal.angle * j)*dataRender;
     	let end = regionVal.y + regionVal.radius * Math.sin(regionVal.angle * j)*dataRender;
         ctx.arc(start, end, 6, 0, Math.PI * 2);
