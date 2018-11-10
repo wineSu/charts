@@ -43,7 +43,7 @@ export function drawPoint(speed,x = 0) {
         let yVal = parseInt((nums[i].yVal)*speed),
         	xVal = nums[i].xVal,
         	numsY = (ht - ht*yVal/defaultParam.maxPoint - 10)*speed,
-        	numsX = i * (defaultParam.wid/nums.length-1) + defaultParam.x;
+        	numsX = i * (defaultParam.wid/nums.length-1)*speed + defaultParam.x;
         //绘制折线点
         if(defaultParam.type == 'line'){
 			ctx.beginPath();
@@ -61,6 +61,7 @@ export function drawPoint(speed,x = 0) {
 		}else{
 			//柱状图
 			numsY = (ht - ht*yVal/defaultParam.maxPoint - 10);
+			numsX = i * (defaultParam.wid/nums.length-1) + defaultParam.x;
 		}
         //折线上的点值  
 		ctx.shadowBlur = 0;
@@ -97,21 +98,21 @@ export function drawLine(speed){
 		maxPoint  = defaultParam.maxPoint,
 		len = nums.length-1,
 		rectHei = this.canvas.height - bottompad*2 - defaultParam.padding;
+	
 	for (let i = 0;i < len;i ++){
         //起始坐标
-        let yVal = nums[i].yVal*speed,
+        let yVal = nums[i].yVal,
         	axiosY = (ht - ht*(yVal)/maxPoint - bottompad),
         	averNum= (defaultParam.wid/nums.length-1),
-        	axiosX = (i * averNum * speed + defaultParam.x),
+        	axiosX = (i * averNum + defaultParam.x),
 			//终止坐标  
-    		axiosNY = ht - ht*(nums[i+1].yVal)/maxPoint*speed - bottompad,
-    	    axiosNX = ((i+1) * averNum*speed + defaultParam.x);
-    	    
+    		axiosNY = (ht - ht*(nums[i+1].yVal)/maxPoint - bottompad),
+    	    axiosNX = ((i+1) * averNum + defaultParam.x);
     	//划线
         ctx.beginPath();
         ctx.setLineDash([1,1]);
         ctx.moveTo(axiosX,axiosY);
-        ctx.lineTo(axiosNX,axiosNY);
+        ctx.lineTo((axiosNX-axiosX)*speed+axiosX,(axiosNY-axiosY)*speed+axiosY);
         ctx.lineWidth = defaultParam.lineWidth;
         ctx.strokeStyle = defaultParam.styleSet.lineColor;
         ctx.closePath();
