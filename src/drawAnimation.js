@@ -16,7 +16,7 @@ export default function Animation(param) {
 		looped = requestAnimationFrame(looping);
 	    if(current < param.percent){
 	    	ctx.clearRect(0,0,_canvas.width,_canvas.height);
-	        current = (current + 7) > 100 ? 100 : current+7;
+	        current = (current + 4) > 100 ? 100 : current+4;
 	        callback(current);
 	    }else{
 	        window.cancelAnimationFrame(looped);

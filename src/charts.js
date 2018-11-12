@@ -7,7 +7,7 @@ import Animation from './drawAnimation';
 //圆环进度
 import Cirque from './cirque';
 //坐标轴
-import {drawAxis, drawPoint, drawLine, drawBar}  from './drawAxis';
+import {drawAxis, drawPoint, drawLine, drawLineXdash, drawBar}  from './drawAxis';
 //扇形图
 import drawPie from './drawPie';
 //雷达图
@@ -88,6 +88,7 @@ import drawRegion from './drawRegion';
 					Animation.call(this,{
 						percent: 100,
 						render: (current)=>{
+							drawLineXdash.call(this,current/100);
 							drawLine.call(this,current/100);
 							drawAxis.call(this);
 							drawPoint.call(this,current/100);

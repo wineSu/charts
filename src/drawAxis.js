@@ -42,8 +42,8 @@ export function drawPoint(speed,x = 0) {
 	for (let i = 0;i < len;i ++){
         let yVal = parseInt((nums[i].yVal)*speed),
         	xVal = nums[i].xVal,
-        	numsY = (ht - ht*yVal/defaultParam.maxPoint - 10)*speed,
-        	numsX = i * (defaultParam.wid/nums.length-1)*speed + defaultParam.x;
+        	numsY = (ht - ht*yVal/defaultParam.maxPoint - 10),
+        	numsX = i * (defaultParam.wid/nums.length-1) + defaultParam.x;
         //绘制折线点
         if(defaultParam.type == 'line'){
 			ctx.beginPath();
@@ -58,10 +58,6 @@ export function drawPoint(speed,x = 0) {
 			ctx.closePath();
 			ctx.stroke();
 			ctx.fill();
-		}else{
-			//柱状图
-			numsY = (ht - ht*yVal/defaultParam.maxPoint - 10);
-			numsX = i * (defaultParam.wid/nums.length-1) + defaultParam.x;
 		}
         //折线上的点值  
 		ctx.shadowBlur = 0;
@@ -97,8 +93,10 @@ export function drawLine(speed){
 		width = this.canvas.width,
 		maxPoint  = defaultParam.maxPoint,
 		len = nums.length-1,
-		rectHei = this.canvas.height - bottompad*2 - defaultParam.padding;
-	
+		progressDots = Math.floor(speed * len),  //循序渐进 折线图
+		progressFragment = speed * len - progressDots;  //加缓冲
+	ctx.beginPath();
+	ctx.setLineDash([1,1]);
 	for (let i = 0;i < len;i ++){
         //起始坐标
         let yVal = nums[i].yVal,
@@ -108,15 +106,45 @@ export function drawLine(speed){
 			//终止坐标  
     		axiosNY = (ht - ht*(nums[i+1].yVal)/maxPoint - bottompad),
     	    axiosNX = ((i+1) * averNum + defaultParam.x);
-    	//划线
-        ctx.beginPath();
-        ctx.setLineDash([1,1]);
-        ctx.moveTo(axiosX,axiosY);
-        ctx.lineTo((axiosNX-axiosX)*speed+axiosX,(axiosNY-axiosY)*speed+axiosY);
-        ctx.lineWidth = defaultParam.lineWidth;
-        ctx.strokeStyle = defaultParam.styleSet.lineColor;
-        ctx.closePath();
-        ctx.stroke();
+    	//渐进图
+    	if(i<=progressDots){
+    		//划线
+    		if(i === progressDots){
+    			axiosNX = (axiosNX-axiosX)*progressFragment+axiosX;
+    			axiosNY = (axiosNY-axiosY)*progressFragment+axiosY;
+    		}
+    		ctx.moveTo(axiosX,axiosY);
+	        ctx.lineTo(axiosNX,axiosNY);
+	        ctx.lineWidth = defaultParam.lineWidth;
+	        ctx.strokeStyle = defaultParam.styleSet.lineColor;
+        }
+    }
+    ctx.closePath();
+    ctx.stroke();
+}
+
+/**
+ * @Author   SuZhe
+ * @DateTime 2018-11-07
+ * @desc     x轴上虚线
+ */
+export function drawLineXdash(speed){
+	let defaultParam = this.defaultParam,
+		ctx = this.ctx,
+		bottompad = 10,
+		nums = defaultParam.data,
+		ht   = defaultParam.ht,
+		maxPoint  = defaultParam.maxPoint,
+		len = nums.length-1;
+	for (let i = 0;i < len;i ++){
+        //起始坐标
+        let yVal = nums[i].yVal,
+        	axiosY = (ht - ht*(yVal)/maxPoint - bottompad),
+        	averNum= (defaultParam.wid/nums.length-1),
+        	axiosX = (i * averNum + defaultParam.x),
+			//终止坐标  
+    		axiosNY = (ht - ht*(nums[i+1].yVal)/maxPoint*speed - bottompad),
+    	    axiosNX = ((i+1) * averNum + defaultParam.x);
         //x轴上纵线
         ctx.beginPath();
         ctx.setLineDash([6,6]);
@@ -132,6 +160,7 @@ export function drawLine(speed){
         ctx.closePath();
     }
 }
+
 
 /**
  * @Author   SuZhe
