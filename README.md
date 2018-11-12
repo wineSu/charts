@@ -20,3 +20,4 @@ npm run build
 dist/html中有使用方法，具体说明后续优化（参数优化、文档补充）  
 请使用手机模式查看，兼容pc的只需要修改div样式即可（暂未处理）  
 https://winesu.github.io/charts/dist/index.html?s==22
+tip:注释和说明待补充、交互待补充
