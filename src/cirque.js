@@ -21,7 +21,7 @@ let Cirque = function(percent){
 	ctx.arc(circleValue.x, circleValue.y, circleValue.radius, circleValue.startAngle, circleValue.endAngle, circleValue.anticlockwise);
 	ctx.closePath(); 
 	ctx.stroke();
-	
+
 	//展示进度圆环绘制
 	ctx.lineWidth = circleValue.arcWidth;
 	ctx.beginPath();
@@ -32,14 +32,14 @@ let Cirque = function(percent){
 	ctx.strokeStyle = linear;
 	ctx.arc(circleValue.x, circleValue.y, circleValue.radius, circleValue.startAngle, circleValue.endAngle*percent, circleValue.anticlockwise);
 	ctx.stroke();
-	
+
 	//进度起点圆角
 	ctx.beginPath();
 	ctx.fillStyle = '#ff8157';
 	ctx.arc(circleValue.x + circleValue.radius, circleValue.y - 1, circleValue.arcWidth/2, circleValue.startAngle, circleValue.endAngle, circleValue.anticlockwise);
 	ctx.closePath();
 	ctx.fill();
-	
+
 	//终点圆角
 	ctx.lineWidth = circleValue.arcWidth - 10;
 	ctx.beginPath();
