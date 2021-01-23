@@ -2,6 +2,7 @@
 # charts 
 
 a lightweight canvas chart library
+for phone
 
 # more
 <a href="https://www.gitsu.cn/article79">
