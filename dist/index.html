@@ -11,18 +11,21 @@
 			 * rem计算
 			 * *************************************
 			 */
+			let clientWid = Mathc.min(document.documentElement.clientWidth, 750);
+			
 			document.documentElement.style.fontSize=  
-			    document.documentElement.clientWidth/7.5+'px';  
+			    clientWid/7.5+'px';  
 			//企图改变屏幕大小  
 			window.addEventListener("resize",function(){  
 			    document.documentElement.style.fontSize=  
-			    document.documentElement.clientWidth/7.5+'px';  
+			    clientWid/7.5+'px';  
 			})
 			
 		</script>
 	</head>
 
 	<body>
+		<div style = 'max-width:750px;margin:0 auto;'>	
 		<div class="canvasCont">
 			<div id="canvas" style="width: 100%;height: 5.8rem;"></div> 
 			<div class="textCont">
@@ -48,8 +51,11 @@
 		</div>
 		<div class=" boxList">
 			<div id="can6" style="width: 100%;height: 100%;"></div> 
-			</div>
-	<script type="text/javascript" src="charts.js"></script></body>
+		</div>
+		</div>
+	<script type="text/javascript" src="charts.js"></script>
+			
+	</body>
 
 </html>
 
