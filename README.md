@@ -1,7 +1,15 @@
+
 # charts 
 
 a lightweight canvas chart library
 
+# more
+<a href="https://www.gitsu.cn/article79">
+    <img src="https://img.shields.io/badge/charts-介绍-brightgreen" alt="charts" />
+</a>
+<a href="https://winesu.github.io/charts/dist/index.html?s==22">
+    <img src="https://img.shields.io/badge/charts-预览-brightgreen" alt="charts" />
+</a>
 
 ## Quickstart
 
@@ -43,10 +51,3 @@ const lineChart = Charts({
 ... 
 
 ```
-# more
-<a href="https://www.gitsu.cn/article79">
-    <img src="https://img.shields.io/badge/charts-介绍-brightgreen" alt="charts" />
-</a>
-<a href="https://winesu.github.io/charts/dist/index.html?s==22">
-    <img src="https://img.shields.io/badge/charts-预览-brightgreen" alt="charts" />
-</a>
