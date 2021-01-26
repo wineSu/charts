@@ -4,7 +4,7 @@
 a lightweight canvas chart library
 -- for mobile
 
-# more
+# DOC & VIEW
 <a href="https://www.gitsu.cn/article79">
     <img src="https://img.shields.io/badge/charts-介绍-brightgreen" alt="charts" />
 </a>
