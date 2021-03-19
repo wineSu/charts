@@ -13,7 +13,7 @@ import drawPie from './drawPie';
 //雷达图
 import drawRegion from './drawRegion';
 
-;(function(window,undefined){
+;(function(window, undefined){
 	function Charts(defaultParam){
 		return new Charts.prototype.init(defaultParam);
 	}
@@ -21,9 +21,7 @@ import drawRegion from './drawRegion';
 	Charts.prototype = {
 		init: function(defaultParam){
 			//初始化元素类
-			let _this = this,
-				//canva父节点
-				_canvasParDom = document.getElementById(defaultParam.id), 
+			let _canvasParDom = document.getElementById(defaultParam.id), 
 				//容器宽度 
 				_parWid = _canvasParDom.clientWidth,
 				//容器高度
@@ -156,5 +154,5 @@ import drawRegion from './drawRegion';
         window.Charts =  Charts;
     }
     
-})(window,undefined);
+})(window, undefined);
 
