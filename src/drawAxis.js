@@ -45,7 +45,7 @@ export function drawPoint(speed, x = 0) {
 			numsY = (ht - ht * yVal / defaultParam.maxPoint - 10),
 			numsX = i * (defaultParam.wid / nums.length - 1) + defaultParam.x;
 		//绘制折线点
-		if (defaultParam.type == 'line') {
+		if (type == 'line') {
 			ctx.beginPath();
 			ctx.shadowOffsetX = 0;
 			ctx.shadowOffsetY = 0;
@@ -90,7 +90,6 @@ export function drawLine(speed) {
 		bottompad = 10,
 		nums = defaultParam.data,
 		ht = defaultParam.ht,
-		width = this.canvas.width,
 		maxPoint = defaultParam.maxPoint,
 		len = nums.length - 1,
 		progressDots = Math.floor(speed * len),  //循序渐进 折线图
@@ -178,10 +177,10 @@ export function drawBar(speed) {
 		rectHei = this.canvas.height - bottompad * 2 - defaultParam.padding;
 	for (let i = 0; i < len; i++) {
 		//起始坐标
-		let yVal = nums[i].yVal * speed,
-			axiosY = (ht - ht * (yVal) / maxPoint - bottompad),
-			averNum = (defaultParam.wid / nums.length - 1),
-			axiosX = (i * averNum + defaultParam.x);
+		let yVal    = nums[i].yVal * speed,
+			axiosY  = ht - ht * yVal / maxPoint - bottompad,
+			averNum = defaultParam.wid / nums.length - 1,
+			axiosX  = i * averNum + defaultParam.x;
 
 		ctx.beginPath();
 		let grd = ctx.createLinearGradient(axiosX - 10, 0, axiosX - 10 + 40, rectHei);
