@@ -1,231 +1,232 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>charts</title>
-		<script type="text/javascript">
-			/*
-			 ***************************************
-			 * rem计算
-			 * *************************************
-			 */
-			document.documentElement.style.fontSize=  
-			    document.documentElement.clientWidth/7.5+'px';  
-			//企图改变屏幕大小  
-			window.addEventListener("resize",function(){  
-			    document.documentElement.style.fontSize=  
-			    document.documentElement.clientWidth/7.5+'px';  
-			})
-			
-		</script>
-	</head>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>charts</title>
+	<script type="text/javascript">
+		/*
+		 ***************************************
+		 * rem计算
+		 * *************************************
+		 */
+		document.documentElement.style.fontSize =
+			document.documentElement.clientWidth / 7.5 + 'px';
+		//企图改变屏幕大小  
+		window.addEventListener("resize", function () {
+			document.documentElement.style.fontSize =
+				document.documentElement.clientWidth / 7.5 + 'px';
+		})
 
-	<body>
-		<div class="canvasCont">
-			<div id="canvas" style="width: 100%;height: 5.8rem;"></div> 
-			<div class="textCont">
-				<p class="p1">title</p>
-				<p class="p2">80%</p>
-				<p class="p3">desc</p>
-			</div>
+	</script>
+</head>
+
+<body>
+	<div class="canvasCont">
+		<div id="canvas" style="width: 100%;height: 5.8rem;"></div>
+		<div class="textCont">
+			<p class="p1">title</p>
+			<p class="p2">80%</p>
+			<p class="p3">desc</p>
 		</div>
-		<div class=" boxList">
-			<div id="can1" style="width: 100%;height: 95%;"></div> 
-		</div>
-		<div class=" boxList">
-			<div id="can2" style="width: 100%;height: 95%;"></div> 
-		</div>
-		<div class=" boxList">
-			<div id="can3" style="width: 100%;height: 95%;"></div> 
-		</div>
-		<div class=" boxList">
-			<div id="can4" style="width: 100%;height: 100%;"></div> 
-		</div>
-		<div class=" boxList">
-			<div id="can5" style="width: 100%;height: 100%;"></div> 
-		</div>
-		<div class=" boxList">
-			<div id="can6" style="width: 100%;height: 100%;"></div> 
-			</div>
-	</body>
+	</div>
+	<div class=" boxList">
+		<div id="can1" style="width: 100%;height: 95%;"></div>
+	</div>
+	<div class=" boxList">
+		<div id="can2" style="width: 100%;height: 95%;"></div>
+	</div>
+	<div class=" boxList">
+		<div id="can3" style="width: 100%;height: 95%;"></div>
+	</div>
+	<div class=" boxList">
+		<div id="can4" style="width: 100%;height: 100%;"></div>
+	</div>
+	<div class=" boxList">
+		<div id="can5" style="width: 100%;height: 100%;"></div>
+	</div>
+	<div class=" boxList">
+		<div id="can6" style="width: 100%;height: 100%;"></div>
+	</div>
+</body>
 
 </html>
 
 <script type="text/javascript">
 	var arc = Charts({
-		id:'canvas',
-		type:'cirque',
-		current:88
+		id: 'canvas',
+		type: 'cirque',
+		current: 88
 	});
 	var canvas1 = Charts({
-		id:'can1',
-		type:'line',
-		data:[{
-			xVal:'5-26',
-			yVal:40
-		},{
-			xVal:'5-27',
-			yVal:20
-		},{
-			xVal:'5-28',
-			yVal:30
-		},{
-			xVal:'5-29',
-			yVal:80
-		},{
-			xVal:'5-30',
-			yVal:60
-		},{
-			xVal:'6-01',
-			yVal:20
+		id: 'can1',
+		type: 'line',
+		data: [{
+			xVal: '5-26',
+			yVal: 40
+		}, {
+			xVal: '5-27',
+			yVal: 20
+		}, {
+			xVal: '5-28',
+			yVal: 30
+		}, {
+			xVal: '5-29',
+			yVal: 80
+		}, {
+			xVal: '5-30',
+			yVal: 60
+		}, {
+			xVal: '6-01',
+			yVal: 20
 		}]
 	});
 	var canvas2 = Charts({
-		id:'can2',
-		type:'line',
-		data:[{
-			xVal:'5-26',
-			yVal:10
-		},{
-			xVal:'5-27',
-			yVal:50
-		},{
-			xVal:'5-28',
-			yVal:30
-		},{
-			xVal:'5-29',
-			yVal:80
-		},{
-			xVal:'5-27',
-			yVal:50
-		},{
-			xVal:'5-30',
-			yVal:20
-		},{
-			xVal:'6-01',
-			yVal:90
+		id: 'can2',
+		type: 'line',
+		data: [{
+			xVal: '5-26',
+			yVal: 10
+		}, {
+			xVal: '5-27',
+			yVal: 50
+		}, {
+			xVal: '5-28',
+			yVal: 30
+		}, {
+			xVal: '5-29',
+			yVal: 80
+		}, {
+			xVal: '5-27',
+			yVal: 50
+		}, {
+			xVal: '5-30',
+			yVal: 20
+		}, {
+			xVal: '6-01',
+			yVal: 90
 		}],
-		styleSet:{
-			borderColor:'#a29fff',
-			lineColor:'#8a93fe',
-			pointColor:'#747efe'
+		styleSet: {
+			borderColor: '#a29fff',
+			lineColor: '#8a93fe',
+			pointColor: '#747efe'
 		}
 	});
 	var canvas3 = Charts({
-		id:'can3',
-		type:'bar',
-		data:[{
-			xVal:'5-26',
-			yVal:26
-		},{
-			xVal:'5-27',
-			yVal:67
-		},{
-			xVal:'5-28',
-			yVal:71
-		},{
-			xVal:'5-29',
-			yVal:44
-		},{
-			xVal:'5-30',
-			yVal:15
-		},{
-			xVal:'6-01',
-			yVal:90
-		},{
-			xVal:'5-30',
-			yVal:15
+		id: 'can3',
+		type: 'bar',
+		data: [{
+			xVal: '5-26',
+			yVal: 26
+		}, {
+			xVal: '5-27',
+			yVal: 67
+		}, {
+			xVal: '5-28',
+			yVal: 71
+		}, {
+			xVal: '5-29',
+			yVal: 44
+		}, {
+			xVal: '5-30',
+			yVal: 15
+		}, {
+			xVal: '6-01',
+			yVal: 90
+		}, {
+			xVal: '5-30',
+			yVal: 15
 		}],
-		styleSet:{
-			borderColor:'#199475',
-			lineColor:'#72f6ff',
-			pointColor:'#747efe'
+		styleSet: {
+			borderColor: '#199475',
+			lineColor: '#72f6ff',
+			pointColor: '#747efe'
 		}
 	});
 	var canvas4 = Charts({
-		id:'can4',
-		type:'pie',
-		data:[
+		id: 'can4',
+		type: 'pie',
+		data: [
 			{
-				name:'one',
-				value:50
+				name: 'one',
+				value: 50
 			},
 			{
-				name:'two',
-				value:40
+				name: 'two',
+				value: 40
 			},
 			{
-				name:'three',
-				value:43
+				name: 'three',
+				value: 43
 			},
 			{
-				name:'four',
-				value:11
+				name: 'four',
+				value: 11
 			},
 			{
-				name:'five',
-				value:29
+				name: 'five',
+				value: 29
 			}
-        ]
+		]
 	});
 	var canvas5 = Charts({
-		id:'can5',
-		type:'pie',
+		id: 'can5',
+		type: 'pie',
 		innerRadius: 100, //圆环 添加此参数
-		data:[
+		data: [
 			{
-				name:'one',
-				value:50
+				name: 'one',
+				value: 50
 			},
 			{
-				name:'two',
-				value:40
+				name: 'two',
+				value: 40
 			},
 			{
-				name:'three',
-				value:43
+				name: 'three',
+				value: 43
 			},
 			{
-				name:'four',
-				value:11
+				name: 'four',
+				value: 11
 			},
 			{
-				name:'five',
-				value:22
+				name: 'five',
+				value: 22
 			}
-        ]
+		]
 	});
 
 	var canvas6 = Charts({
-		id:'can6',
-		type:'region',
-		data:[
+		id: 'can6',
+		type: 'region',
+		data: [
 			{
-				name:'防守',
-				value:90
+				name: '防守',
+				value: 90
 			},
 			{
-				name:'进攻',
-				value:50
+				name: '进攻',
+				value: 50
 			},
 			{
-				name:'辅助',
-				value:40
+				name: '辅助',
+				value: 40
 			},
 			{
-				name:'输出',
-				value:43
+				name: '输出',
+				value: 43
 			},
 			{
-				name:'伤害',
-				value:60
+				name: '伤害',
+				value: 60
 			},
 			{
-				name:'经济',
-				value:55
+				name: '经济',
+				value: 55
 			}
-        ]
+		]
 	});
 </script>

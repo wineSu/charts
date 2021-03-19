@@ -8,9 +8,9 @@
 export default function Animation(param) {
 	let current = 0;
 	let looped;
-	let ctx      = this.ctx;
-	let _canvas  = this.canvas;
-	let callback = param.render;
+	let ctx       = this.ctx;
+	let _canvas   = this.canvas;
+	let callback  = param.render;
 	let otherCall = param.success;
 	(function looping(){
 		looped = requestAnimationFrame(looping);
