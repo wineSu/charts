@@ -8,22 +8,22 @@
 export default function Animation(param) {
 	let current = 0;
 	let looped;
-	let ctx       = this.ctx;
-	let _canvas   = this.canvas;
-	let callback  = param.render;
+	let ctx = this.ctx;
+	let _canvas = this.canvas;
+	let callback = param.render;
 	let otherCall = param.success;
-	(function looping(){
+	(function looping() {
 		looped = requestAnimationFrame(looping);
-	    if(current < param.percent){
-	    	ctx.clearRect(0,0,_canvas.width,_canvas.height);
-	        current = (current + 4) > 100 ? 100 : current+4;
-	        callback(current);
-	    }else{
-	        window.cancelAnimationFrame(looped);
-	        looped = null;
-	        if(otherCall){
-	        	otherCall();
-	        }
-	    }
+		if (current < param.percent) {
+			ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+			current = (current + 4) > 100 ? 100 : current + 4;
+			callback(current);
+		} else {
+			window.cancelAnimationFrame(looped);
+			looped = null;
+			if (otherCall) {
+				otherCall();
+			}
+		}
 	})();
 }
